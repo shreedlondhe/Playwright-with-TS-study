@@ -31,5 +31,4 @@ test('Handle window', async ({ page }) => {
     console.log(await tabs[1].locator('p').innerText())// printing from new tab
     await page.locator("//button[@id='radix-:r0:-trigger-advanced']").click()// back to main page
 
-
 })
