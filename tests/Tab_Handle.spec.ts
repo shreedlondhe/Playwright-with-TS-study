@@ -20,7 +20,6 @@ test('Hanlde popup window', async ({ page }) => {
     const context = page.context();
     const [newTab] = await Promise.all([page.waitForEvent('popup'), page.click("//button[normalize-space()='Open New Window']")]);
     console.log(await newTab.title())
-
 })
 
 test('Handle window', async ({ page }) => {
