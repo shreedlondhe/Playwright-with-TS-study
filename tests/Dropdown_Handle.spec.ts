@@ -35,20 +35,33 @@ test('Handle dropdown2', async ({ page }) => {
     const selectedValue = await page.locator('#searchLanguage').inputValue();
     console.log(selectedValue);
 
-    // get all the options of the dropdown
-   let option_s=await page.locator("#searchLanguage option").all()
-   for(let i of option_s){
-    console.log(await i.textContent())
-   }
-   // select first and last option from dropdown
-   let lastOptions:any =await option_s[option_s.length-1].textContent()
-   await page.locator("#searchLanguage").selectOption({label:lastOptions})// select the last option
-   let firstOption:any =await option_s[0].textContent()
-   await page.locator("#searchLanguage").selectOption({label:firstOption})// select the first option
+    // get all the options of the dropdown : 1st method
+    let option_s=await page.locator("#searchLanguage option").all()
+    for(let i of option_s){
+     console.log(await i.textContent())
+     }
 
-   //second methot to print last option
+    // get all the options of the dropdown : 1st method
+    let option__s=await page.locator("#searchLanguage option").allTextContents()
+    for(let i of option__s){
+     console.log(i)
+     }
+    //  select first and last option from dropdown
+    let lastOptions:any =await option_s[option_s.length-1].textContent()
+    await page.locator("#searchLanguage").selectOption({label:lastOptions})// select the last option
+    let firstOption:any =await option_s[0].textContent()
+    await page.locator("#searchLanguage").selectOption({label:firstOption})// select the first option
+
+   //second method to print last option
    let allCount=await page.locator("#searchLanguage option").count()
    await page.locator("#searchLanguage").selectOption({index:allCount-1})// select the last option
+    await page.locator("#searchLanguage").selectOption({index:0})// select the first option
+
+   //third method to get first asn last option
+    let option__s_=await page.locator("#searchLanguage option").allTextContents()
+    await page.locator("#searchLanguage").selectOption({label:await option__s_[option__s_.length-1]})// select last option
+     await page.locator("#searchLanguage").selectOption({label:await option__s_[0]})// select first option
+
 
     //Assertions
     await expect(page.locator('#searchLanguage')).toHaveValue('mg');// to verify value
