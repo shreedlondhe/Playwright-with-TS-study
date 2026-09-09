@@ -1,0 +1,50 @@
+1. What is Playwright?
+2. Installing Playwright
+3. Project Structure
+4. Running Your First Test
+5. Understanding test() and expect()
+6. Browser Context & Page
+7. Navigating to a URL
+8. Locators Overview
+9. CSS Locators
+10. XPath Locators
+11. Built-in Locators (getByRole, getByText, getByLabel)
+12. Handling Input Fields
+13. Clicking Buttons & Links
+14. Checkboxes & Radio Buttons
+15. Dropdowns
+16. Auto-Waiting
+17. Assertions
+18. Handling Alerts
+19. Mouse Actions
+20. Keyboard Actions
+21. Upload Files
+22. Download Files
+23. Screenshots & Videos
+24. Handling Frames (iFrames)
+25. Multiple Tabs & Windows
+26. Browser Contexts
+27. Page Object Model (POM)
+28. Test Fixtures
+29. Hooks (beforeEach & afterEach)
+30. Tags & Test Grouping
+31. Environment Variables (.env)
+32. Authentication & Storage State
+33. API Testing
+34. Network Interception & Mocking
+35. Visual Testing
+36. Data-Driven Testing
+37. Parameterized Tests
+38. Parallel Execution
+39. Retries & Timeouts
+40. HTML Reports
+41. Allure Reports
+42. Cross-Browser Testing
+43. Mobile Emulation
+44. Debugging Playwright Tests
+45. Trace Viewer
+46. CI/CD with GitHub Actions
+47. CI/CD with Jenkins
+48. Playwright Best Practices
+49. Building a Scalable Automation Framework
+50. End-to-End Framework Demo
