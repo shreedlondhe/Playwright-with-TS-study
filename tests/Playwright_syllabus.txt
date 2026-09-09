@@ -3,6 +3,27 @@ How to handle incognito tab in playwright, how to open new tab in playwright:
  - const newTab = await page.context().newPage();
 
 
+
+| Exception / Error                                          | When it occurs                                                                           |
+| ---------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| **TimeoutError**                                           | Playwright waits for an action/assertion but the condition is not met within the timeout |
+| **Error: strict mode violation**                           | Locator matches more than one element when Playwright expects exactly one                |
+| **Error: Target page, context or browser has been closed** | You try to use a page/context/browser after it has been closed                           |
+| **Error: Element is not visible**                          | Playwright tries to interact with an element that is hidden                              |
+| **Error: Element is not enabled**                          | Trying to click/fill an element that is disabled                                         |
+| **Error: Element is not editable**                         | Trying to fill an element that cannot be edited                                          |
+| **Error: Locator resolved to ... elements**                | Locator matched multiple elements                                                        |
+| **Error: Navigation failed**                               | Page navigation could not be completed                                                   |
+| **Error: net::ERR_NAME_NOT_RESOLVED**                      | URL/domain cannot be resolved                                                            |
+| **Error: net::ERR_CONNECTION_REFUSED**                     | Server is not accepting the connection                                                   |
+| **Error: Target closed**                                   | Browser/page/context was unexpectedly closed                                             |
+| **Error: Execution context was destroyed**                 | Page navigated/reloaded while JavaScript was executing                                   |
+| **Error: BrowserType.launch failed**                       | Browser could not be launched                                                            |
+| **Error: Download failed**                                 | File download did not complete successfully                                              |
+| **Error: waiting for selector failed**                     | Expected element/selector was not found within timeout                                   |
+
+
+
 1. What is Playwright?
 2. Installing Playwright
 3. Project Structure
