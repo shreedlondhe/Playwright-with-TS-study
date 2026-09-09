@@ -1,3 +1,8 @@
+How to handle incognito tab in playwright, how to open new tab in playwright:
+ - playwright by-default open in incognito mode
+ - const newTab = await page.context().newPage();
+
+
 1. What is Playwright?
 2. Installing Playwright
 3. Project Structure
