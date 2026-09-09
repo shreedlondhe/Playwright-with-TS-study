@@ -53,3 +53,580 @@ How to handle incognito tab in playwright, how to open new tab in playwright:
 48. Playwright Best Practices
 49. Building a Scalable Automation Framework
 50. End-to-End Framework Demo
+
+
+
+
+
+
+1. What is Playwright?
+What is Playwright?
+What are the main features of Playwright?
+Why would you choose Playwright over Selenium?
+What browsers does Playwright support?
+What languages can be used with Playwright?
+What is Playwright Test?
+What is the difference between Playwright and Playwright Test?
+What are the advantages of Playwright over Cypress?
+What is auto-waiting in Playwright?
+Can Playwright perform API testing?
+
+2. Installing Playwright
+How do you install Playwright?
+What is the command to create a new Playwright project?
+What does npx playwright install do?
+What is the difference between npm install and npx?
+How do you install only Chromium?
+How do you install Playwright browsers?
+What dependencies are created when you initialize a Playwright project?
+
+3. Project Structure
+Explain a typical Playwright project structure.
+What is playwright.config.ts?
+What is the purpose of the tests folder?
+Where do you keep Page Object classes?
+Where do you keep test data?
+Where do you keep utility/helper functions?
+Where are screenshots and videos stored?
+Where is the HTML report generated?
+
+4. Running Your First Test
+How do you write your first Playwright test?
+How do you execute all tests?
+How do you execute a specific test file?
+How do you run a test in headed mode?
+How do you run a specific browser?
+How do you run a test in debug mode?
+How do you run only one test?
+What is the purpose of .only?
+What happens when you use .skip()?
+
+5. Understanding test() and expect()
+What is test() in Playwright?
+What is expect()?
+Difference between test() and expect().
+What is a test assertion?
+What is the difference between hard and soft assertions?
+How do you create a test with multiple assertions?
+What happens when an assertion fails?
+
+Example:
+
+test('Login test', async ({ page }) => {
+    await page.goto('/login');
+
+    await expect(page).toHaveTitle('Login');
+});
+
+6. Browser Context & Page ⭐
+What is a browser in Playwright?
+What is a BrowserContext?
+What is a Page?
+Difference between Browser, BrowserContext and Page.
+Can one context have multiple pages?
+How do you create a new context?
+How do you create a new page?
+Why are BrowserContexts useful?
+Is a BrowserContext similar to incognito mode?
+How do you create two independent user sessions?
+Very common:
+
+Explain the relationship between Browser → Context → Page.
+
+Browser
+   |
+   +-- Context 1
+   |      |
+   |      +-- Page 1
+   |      +-- Page 2
+   |
+   +-- Context 2
+          |
+          +-- Page 3
+
+7. Navigating to a URL
+How do you navigate to a URL?
+Difference between page.goto() and page.reload().
+What is page.goBack()?
+What is page.goForward()?
+What is waitUntil in page.goto()?
+Difference between load, domcontentloaded and networkidle.
+How do you configure baseURL?
+How can you navigate using a relative URL?
+
+8. Locators Overview ⭐
+What is a locator?
+Why should we use locators?
+Difference between locator and selector.
+What happens when a locator matches multiple elements?
+What is locator chaining?
+What is locator()?
+Difference between locator() and getByRole().
+How do you locate the nth element?
+How do you filter locators?
+
+Example:
+
+page.locator('.login-button')
+
+9. CSS Locators
+What is a CSS selector?
+How do you locate an element using ID?
+How do you locate an element using class?
+How do you locate an element using an attribute?
+How do you combine multiple CSS selectors?
+What are the disadvantages of using complex CSS selectors?
+Which is better: CSS locator or getByRole()?
+
+10. XPath Locators
+What is XPath?
+Absolute vs relative XPath?
+What is the difference between XPath and CSS?
+How do you locate an element using XPath?
+What is XPath contains()?
+What is XPath starts-with()?
+How do you locate an element based on text?
+What are the disadvantages of XPath?
+When would you use XPath?
+
+Example:
+page.locator('//button[text()="Login"]')
+
+11. Built-in Locators ⭐⭐⭐
+What is getByRole()?
+Why is getByRole() recommended?
+What is getByText()?
+What is getByLabel()?
+What is getByPlaceholder()?
+What is getByTestId()?
+Difference between getByRole() and getByText().
+How do you locate a textbox?
+How do you locate a button?
+How do you locate a checkbox?
+
+Example:
+page.getByRole('button', { name: 'Login' })
+
+12. Handling Input Fields
+How do you enter text?
+Difference between fill() and type().
+What is press()?
+How do you clear an input?
+How do you enter text character by character?
+How do you handle disabled input?
+How do you verify the entered value?
+await page.getByLabel('Username').fill('admin');
+
+await expect(
+    page.getByLabel('Username')
+).toHaveValue('admin');
+
+13. Clicking Buttons & Links
+How do you click a button?
+How do you click a link?
+Difference between click() and dblclick().
+How do you force a click?
+What is { force: true }?
+What happens if the element is not visible?
+How do you click an element using role?
+How do you handle multiple matching buttons?
+
+14. Checkboxes & Radio Buttons
+How do you select a checkbox?
+How do you uncheck a checkbox?
+How do you verify whether checkbox is checked?
+How do you select a radio button?
+Difference between checkbox and radio button.
+What happens if you call check() on an already checked checkbox?
+await page.getByLabel('Remember me').check();
+
+await expect(
+    page.getByLabel('Remember me')
+).toBeChecked();
+
+15. Dropdowns
+How do you handle a dropdown?
+What is selectOption()?
+How do you select by value?
+How do you select by label?
+How do you select by index?
+How do you handle a custom dropdown?
+Difference between HTML <select> and custom dropdown.
+await page.locator('#country').selectOption('India');
+
+16. Auto-Waiting ⭐⭐⭐
+What is auto-waiting?
+Why is auto-waiting useful?
+What conditions does Playwright wait for before clicking?
+Do we need explicit waits in Playwright?
+Difference between waitForTimeout() and auto-waiting.
+Why should we avoid waitForTimeout()?
+When would you use waitForResponse()?
+When would you use waitForSelector()?
+Important interview question:
+
+Why is Playwright less dependent on Thread.sleep() compared with Selenium?
+
+17. Assertions ⭐⭐⭐
+What is an assertion?
+What assertions are available in Playwright?
+How do you verify text?
+How do you verify URL?
+How do you verify title?
+How do you verify visibility?
+How do you verify an element is enabled?
+How do you verify checkbox is selected?
+Difference between toHaveText() and toContainText().
+Difference between toBeVisible() and toBeAttached().
+
+18. Handling Alerts
+How do you handle JavaScript alerts?
+How do you handle confirmation dialogs?
+How do you handle prompt dialogs?
+What is the dialog event?
+How do you accept an alert?
+How do you dismiss an alert?
+How do you enter text into a prompt?
+page.on('dialog', async dialog => {
+    console.log(dialog.message());
+    await dialog.accept();
+});
+
+19. Mouse Actions
+How do you perform mouse hover?
+How do you perform right-click?
+How do you perform double-click?
+How do you drag and drop?
+How do you click at a specific coordinate?
+What is page.mouse?
+Difference between locator click and mouse click.
+
+20. Keyboard Actions
+How do you press Enter?
+How do you press Tab?
+How do you use keyboard shortcuts?
+How do you select all text?
+How do you copy/paste using keyboard?
+What is page.keyboard?
+Difference between fill() and keyboard typing.
+
+Example:
+await page.keyboard.press('Enter');
+
+21. Upload Files
+How do you upload a file?
+What is setInputFiles()?
+How do you upload multiple files?
+How do you handle file chooser?
+Difference between setInputFiles() and waitForEvent('filechooser').
+await page.locator('input[type="file"]')
+    .setInputFiles('test.pdf');
+
+22. Download Files
+How do you handle downloads?
+What is the download event?
+How do you save a downloaded file?
+How do you verify the downloaded filename?
+How do you verify a file exists?
+const downloadPromise = page.waitForEvent('download');
+
+await page.getByText('Download').click();
+const download = await downloadPromise;
+await download.saveAs('downloads/file.pdf');
+
+23. Screenshots & Videos
+How do you take a screenshot?
+How do you take a full-page screenshot?
+How do you configure screenshots?
+How do you record videos?
+How do you capture screenshot only when test fails?
+Where are screenshots/videos stored?
+await page.screenshot({
+    path: 'screenshots/home.png',
+    fullPage: true
+});
+
+24. Handling Frames / iFrames ⭐⭐
+What is an iframe?
+Why can't we directly interact with iframe elements?
+How do you handle iframe in Playwright?
+What is frameLocator()?
+Difference between frameLocator() and contentFrame().
+How do you click an element inside an iframe?
+const frame = page.frameLocator('#payment-frame');
+
+await frame.getByLabel('Card Number').fill('1234');
+
+25. Multiple Tabs & Windows ⭐⭐⭐
+How do you open a new tab?
+How do you handle a new tab opened by clicking a link?
+What is a popup?
+Difference between page and context.newPage().
+How do you switch between tabs?
+How do you get all open pages?
+How do you handle multiple windows?
+
+Example:
+const newTabPromise = page.waitForEvent('popup');
+await page.getByText('Open').click();
+const newTab = await newTabPromise;
+await newTab.waitForLoadState();
+
+26. Browser Contexts ⭐⭐⭐
+What is BrowserContext?
+Why do we use BrowserContext?
+How is BrowserContext different from Browser?
+Can multiple contexts run in one browser?
+Does each context have separate cookies?
+How do you create two independent users?
+Example:
+const context1 = await browser.newContext();
+const context2 = await browser.newContext();
+
+27. Page Object Model ⭐⭐⭐
+What is POM?
+Why do we use POM?
+What should a Page Object contain?
+Should assertions be inside Page Object?
+How do you create a BasePage?
+How do you share common methods?
+How do you organize POM in a large framework?
+What are the advantages/disadvantages of POM?
+
+28. Test Fixtures ⭐⭐⭐
+What is a fixture?
+What are built-in Playwright fixtures?
+What is the page fixture?
+What is the browser fixture?
+What is the context fixture?
+How do you create a custom fixture?
+Difference between fixture and utility function.
+How do you create a fixture for login?
+
+29. Hooks
+What is beforeEach()?
+What is afterEach()?
+Difference between beforeAll() and beforeEach().
+Difference between afterAll() and afterEach().
+When should you use hooks?
+Can hooks be defined inside describe()?
+What happens if beforeEach() fails?
+
+30. Tags & Test Grouping
+How do you group tests?
+What is test.describe()?
+How do you tag tests?
+How do you execute only smoke tests?
+How do you skip tests?
+Difference between .only() and .skip().
+Example:
+test.describe('Login Tests', () => {
+    // tests
+});
+
+31. Environment Variables .env
+Why do we use environment variables?
+How do you store username/password in .env?
+How do you access environment variables?
+How do you manage QA/UAT/Production URLs?
+Why should passwords not be hardcoded?
+How would you configure different environments?
+
+32. Authentication & Storage State ⭐⭐⭐
+How do you handle authentication?
+What is storageState?
+Why do we use storageState?
+How do you save login session?
+How do you reuse authentication across tests?
+How do you handle multiple users?
+What are cookies and localStorage?
+How can you avoid logging in before every test?
+
+33. API Testing ⭐⭐⭐
+Can Playwright perform API testing?
+What is request fixture?
+How do you send GET request?
+How do you send POST request?
+How do you pass headers?
+How do you pass request body?
+How do you validate status code?
+How do you validate response body?
+How do you combine API and UI testing?
+Example:
+const response = await request.get('/users');
+expect(response.status()).toBe(200);
+
+34. Network Interception & Mocking ⭐⭐⭐⭐
+What is network interception?
+What is page.route()?
+How do you mock an API response?
+How do you modify an API response?
+How do you block an API call?
+How do you intercept a request?
+Difference between route.fulfill() and route.continue().
+How do you mock a slow API?
+How do you replace an API response with local JSON?
+
+35. Visual Testing
+What is visual testing?
+What is toHaveScreenshot()?
+How does Playwright perform visual comparison?
+What is a baseline screenshot?
+How do you handle dynamic content during visual testing?
+What causes visual test failures?
+
+36. Data-Driven Testing
+What is data-driven testing?
+How do you run the same test with multiple datasets?
+Where should test data be stored?
+How do you read JSON test data?
+How do you read CSV/Excel data?
+How would you test login with 10 different users?
+
+37. Parameterized Tests
+What is parameterization?
+How is parameterization different from data-driven testing?
+How do you create multiple tests using an array?
+How do you generate test cases dynamically?
+Example:
+const users = ['user1', 'user2', 'user3'];
+
+for (const user of users) {
+    test(`Login ${user}`, async ({ page }) => {
+        // test
+    });
+}
+
+38. Parallel Execution ⭐⭐⭐
+Does Playwright support parallel execution?
+What is a worker?
+How do you configure workers?
+What is the default parallel behavior?
+How do you run tests serially?
+What problems can occur with parallel execution?
+How do you handle shared test data in parallel execution?
+Difference between workers and browser contexts.
+
+39. Retries & Timeouts ⭐⭐⭐
+What is a retry?
+How do you configure retries?
+When should retries be used?
+What is test timeout?
+What is action timeout?
+What is navigation timeout?
+Difference between test timeout and action timeout.
+How do you configure global timeout?
+How do you override timeout for one test?
+
+40. HTML Reports
+What is the Playwright HTML report?
+How do you generate an HTML report?
+How do you open the HTML report?
+How do you configure reporters?
+How do you configure multiple reporters?
+What information does the HTML report contain?
+
+41. Allure Reports ⭐⭐⭐
+What is Allure?
+Why do we use Allure reports?
+How do you integrate Allure with Playwright?
+How do you generate Allure results?
+How do you generate an Allure report?
+How do you attach screenshots to Allure?
+How do you attach API responses/logs?
+Difference between Playwright HTML report and Allure.
+
+42. Cross-Browser Testing ⭐⭐⭐
+Which browsers does Playwright support?
+How do you run tests on Chromium?
+How do you run tests on Firefox?
+How do you run tests on WebKit?
+How do you configure multiple browsers?
+How do you run a test on Chrome and Firefox?
+What problems can occur in cross-browser testing?
+
+43. Mobile Emulation
+Can Playwright test mobile applications?
+Can Playwright test a real Android/iOS application?
+What is mobile emulation?
+How do you emulate an iPhone?
+What is devices in Playwright?
+What is the difference between mobile emulation and real-device testing?
+How do you configure viewport, user agent and touch?
+
+44. Debugging Playwright Tests ⭐⭐⭐
+How do you debug Playwright tests?
+What is --debug?
+What is page.pause()?
+How do you use Playwright Inspector?
+How do you debug a failed test?
+How do you view console logs?
+How do you capture screenshots during debugging?
+How do you inspect locators?
+
+45. Trace Viewer ⭐⭐⭐
+What is Playwright Trace Viewer?
+Why do we use trace?
+How do you enable tracing?
+What information does a trace contain?
+How do you open a trace?
+Difference between trace and screenshot.
+Difference between trace and video.
+When would you use trace: 'on-first-retry'?
+
+46. CI/CD with GitHub Actions ⭐⭐⭐
+What is CI/CD?
+How do you execute Playwright tests in GitHub Actions?
+What is a GitHub Actions workflow?
+Where do you define the workflow?
+How do you install Playwright browsers in CI?
+How do you publish Playwright reports?
+How do you handle secrets?
+How do you run tests on every push?
+How do you run tests on pull requests?
+
+47. CI/CD with Jenkins ⭐⭐⭐
+How do you integrate Playwright with Jenkins?
+How do you execute Playwright from Jenkins?
+How do you configure Jenkins pipeline?
+How do you pass environment variables?
+How do you publish HTML reports?
+How do you publish Allure reports?
+How do you archive screenshots/videos?
+How do you handle failed tests?
+How do you configure scheduled execution?
+
+48. Playwright Best Practices ⭐⭐⭐⭐
+Why should we prefer getByRole() over XPath?
+Why should we avoid hard waits?
+Why should we use Page Object Model?
+How do you make tests independent?
+How do you avoid flaky tests?
+How do you manage test data?
+How do you handle authentication efficiently?
+How do you handle dynamic elements?
+How do you manage locators?
+How do you design maintainable Playwright tests?
+
+49. Building a Scalable Automation Framework ⭐⭐⭐⭐⭐
+These are Senior/SDET-level questions.
+How would you design a Playwright framework from scratch?
+How would you structure your folders?
+How would you implement POM?
+How would you implement custom fixtures?
+How would you handle authentication?
+How would you handle multiple environments?
+How would you manage test data?
+How would you implement logging?
+How would you implement screenshots?
+How would you integrate Allure?
+How would you integrate Jenkins?
+How would you run tests in parallel?
+How would you handle retries?
+How would you handle flaky tests?
+How would you implement API + UI automation?
+How would you implement network mocking?
+How would you handle multiple users?
+How would you handle secrets?
+How would you make the framework reusable?
+How would you make the framework scalable for 1,000+ tests?
